@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>F4 數學 UT1 溫習｜二次方程・複數・因式分解・指數・主項調換・百分數</title>
+<meta name="description" content="F4 數學上學期測驗一溫習：36 題 DSE 歷屆試題，分為二次方程、複數、因式分解、指數化簡、主項調換、百分數六個課題，附中文題意、提示與完整解答。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Georgia,serif' fill='white' text-anchor='middle'%3E%CF%A3%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --ink:#0f172a; --ink-2:#334155; --muted:#64748b; --line:#e5e9f2;
+  --bg:#f5f7fc; --card:#ffffff; --accent:#4f46e5;
+  --amber:#b45309; --amber-bg:#fff8eb; --green:#0f766e; --green-bg:#ecfdf5;
+  --radius:18px;
+  --shadow:0 1px 2px rgba(15,23,42,.04), 0 12px 28px -18px rgba(15,23,42,.28);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang HK","Noto Sans HK","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+  line-height:1.75; font-size:16px;
+  background-image:radial-gradient(1000px 420px at 12% -8%, #e8ecff 0%, transparent 60%),
+                   radial-gradient(900px 400px at 88% -12%, #e6f7f6 0%, transparent 58%);
+  background-repeat:no-repeat;
+}
+
+/* ---------- hero ---------- */
+.hero{
+  background:linear-gradient(135deg,#0f172a 0%,#172554 55%,#1e293b 100%);
+  color:#fff; padding:34px 20px 30px; position:relative; overflow:hidden;
+}
+.hero::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(520px 220px at 82% 0%, rgba(99,102,241,.45), transparent 70%),
+             radial-gradient(420px 200px at 6% 100%, rgba(13,148,136,.35), transparent 70%);
+  pointer-events:none;
+}
+.hero-in{max-width:1080px; margin:0 auto; position:relative; z-index:1}
+.eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:#c7d2fe; font-weight:600}
+.eyebrow span.dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.18)}
+h1{margin:10px 0 6px; font-size:clamp(24px,4.4vw,34px); line-height:1.28; letter-spacing:.01em; font-weight:800}
+.sub{margin:0; color:#cbd5e1; font-size:14.5px; max-width:70ch}
+.hero-stats{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+.stat{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14);
+  border-radius:999px; padding:6px 14px; font-size:13px; color:#e2e8f0}
+.stat b{color:#fff; font-weight:700; margin-right:4px}
+.overall{margin-top:18px; max-width:420px}
+.overall-top{display:flex; justify-content:space-between; font-size:12.5px; color:#cbd5e1; margin-bottom:7px}
+.overall-bar{height:8px; border-radius:999px; background:rgba(255,255,255,.16); overflow:hidden}
+.overall-bar i{display:block; height:100%; width:0; border-radius:999px;
+  background:linear-gradient(90deg,#818cf8,#34d399); transition:width .45s cubic-bezier(.22,1,.36,1)}
+
+/* ---------- tabs ---------- */
+.tabs-wrap{position:sticky; top:0; z-index:40; background:rgba(245,247,252,.86);
+  backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--line)}
+.tabs{max-width:1080px; margin:0 auto; display:flex; gap:8px; padding:12px 16px; overflow-x:auto;
+  scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex:0 0 auto; display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line);
+  background:#fff; color:var(--ink-2); border-radius:999px; padding:9px 16px; font-size:14.5px;
+  font-weight:600; cursor:pointer; white-space:nowrap; transition:.18s; font-family:inherit;
+}
+.tab .dot{width:8px;height:8px;border-radius:50%;background:var(--c,#94a3b8); transition:.18s}
+.tab .n{font-size:11.5px; color:var(--muted); font-weight:600}
+.tab:hover{border-color:#c7cfe2; transform:translateY(-1px)}
+.tab[aria-selected="true"]{background:var(--c,#4f46e5); border-color:transparent; color:#fff;
+  box-shadow:0 8px 18px -10px var(--c,#4f46e5)}
+.tab[aria-selected="true"] .dot{background:#fff}
+.tab[aria-selected="true"] .n{color:rgba(255,255,255,.85)}
+
+/* ---------- layout ---------- */
+main{max-width:1080px; margin:0 auto; padding:26px 16px 70px}
+.panel[hidden]{display:none}
+.panel-head{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;
+  gap:14px; margin:6px 0 18px}
+.panel-title{display:flex; align-items:center; gap:12px}
+.panel-title h2{margin:0; font-size:22px; letter-spacing:.01em}
+.panel-title .en{font-size:12.5px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase;
+  display:block; margin-top:2px; font-weight:600}
+.panel-desc{margin:8px 0 0; color:var(--ink-2); font-size:14px}
+.pill{width:10px;height:34px;border-radius:999px;background:var(--c); flex:0 0 auto}
+.tools{display:flex; gap:8px; flex-wrap:wrap}
+.tool{font-family:inherit; font-size:13px; border:1px solid var(--line); background:#fff; color:var(--ink-2);
+  padding:7px 13px; border-radius:10px; cursor:pointer; transition:.15s}
+.tool:hover{background:#f8fafc; border-color:#cbd5e1; color:var(--ink)}
+
+.topic-progress{display:flex; align-items:center; gap:12px; margin:0 0 16px; font-size:13px; color:var(--muted)}
+.topic-progress .bar{flex:1; height:6px; border-radius:999px; background:#e8ecf5; overflow:hidden}
+.topic-progress .bar i{display:block; height:100%; width:0; background:var(--c); border-radius:999px;
+  transition:width .4s cubic-bezier(.22,1,.36,1)}
+.topic-progress b{color:var(--c); font-weight:700}
+
+/* ---------- card ---------- */
+.card{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:20px 20px 16px; margin-bottom:16px; box-shadow:var(--shadow); position:relative;
+  transition:border-color .2s, box-shadow .2s;
+}
+.card:hover{border-color:#d5dced}
+.card.is-done{border-color:#bbf7d0; background:linear-gradient(#fff,#fbfffd)}
+.card-head{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px}
+.idx{width:30px;height:30px;border-radius:10px; display:grid; place-items:center; font-size:13.5px;
+  font-weight:800; color:var(--c); background:color-mix(in srgb, var(--c) 11%, #fff); flex:0 0 auto}
+.badges{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+.badge{font-size:11.5px; font-weight:700; letter-spacing:.02em; padding:3px 9px; border-radius:7px;
+  background:#f1f5f9; color:#475569}
+.badge.src{background:color-mix(in srgb, var(--c) 10%, #fff); color:var(--c)}
+.badge.tag{background:#f8fafc; color:#64748b; font-weight:600}
+.spacer{flex:1}
+
+.para{font-size:15.8px; line-height:1.95; color:var(--ink); margin:0 0 6px}
+.para .lbl{display:inline-block; font-size:11.5px; font-weight:800; letter-spacing:.08em; color:var(--c);
+  margin-right:8px; vertical-align:2px}
+details.orig{margin:8px 0 2px}
+details.orig summary{font-size:12.5px; color:var(--muted); cursor:pointer; list-style:none;
+  display:inline-flex; align-items:center; gap:6px; padding:3px 0; user-select:none}
+details.orig summary::-webkit-details-marker{display:none}
+details.orig summary::before{content:"▸"; font-size:11px; transition:transform .18s}
+details.orig[open] summary::before{transform:rotate(90deg)}
+.orig-body{margin:8px 0 0; padding:12px 14px; border-radius:12px; background:#f8fafc;
+  border:1px solid #eef2f8; font-size:14.5px; line-height:1.9; color:var(--ink-2); white-space:pre-wrap}
+.options{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin:12px 0 4px}
+.opt{display:flex; gap:8px; align-items:flex-start; padding:9px 12px; border-radius:11px;
+  background:#f8fafc; border:1px solid #edf1f7; font-size:14.5px}
+.opt b{color:var(--c); font-weight:800; flex:0 0 auto}
+
+.actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; align-items:center}
+.btn{font-family:inherit; font-size:13.5px; font-weight:700; border-radius:10px; padding:8px 14px;
+  cursor:pointer; border:1px solid transparent; transition:.15s; display:inline-flex; align-items:center; gap:6px}
+.btn.hint{background:var(--amber-bg); color:var(--amber); border-color:#fde9c4}
+.btn.hint:hover{background:#fef3c7}
+.btn.sol{background:var(--c); color:#fff}
+.btn.sol:hover{filter:brightness(1.06)}
+.btn.done{background:#fff; color:#475569; border-color:var(--line)}
+.btn.done[aria-pressed="true"]{background:#dcfce7; border-color:#bbf7d0; color:#15803d}
+.btn.ghost{background:transparent; color:var(--muted); padding:8px 4px}
+.btn.ghost:hover{color:var(--c)}
+
+.box{margin-top:12px; padding:14px 16px; border-radius:12px; font-size:14.8px; line-height:1.9;
+  animation:fade .22s ease}
+@keyframes fade{from{opacity:0; transform:translateY(-3px)} to{opacity:1; transform:none}}
+.box[hidden]{display:none}
+.hintbox{background:var(--amber-bg); border:1px solid #fde9c4; color:#7c4a03}
+.hintbox .h{font-weight:800; font-size:12px; letter-spacing:.1em; color:var(--amber);
+  display:block; margin-bottom:4px}
+.solbox{background:#f8fafc; border:1px solid #e9eef7}
+.answer{display:flex; gap:10px; align-items:baseline; background:var(--green-bg); border:1px solid #d1fae5;
+  color:#065f46; padding:11px 14px; border-radius:11px; font-weight:700; font-size:15px; margin-bottom:12px}
+.answer .lb{font-size:11.5px; letter-spacing:.1em; color:#0f766e; background:#ccfbf1; padding:2px 8px;
+  border-radius:6px; flex:0 0 auto}
+.steps{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.steps li{display:flex; gap:11px; align-items:flex-start}
+.steps .sn{width:22px; height:22px; border-radius:50%; background:#fff; border:1px solid #dbe3f0;
+  color:var(--c); font-size:11.5px; font-weight:800; display:grid; place-items:center; flex:0 0 auto; margin-top:3px}
+.steps .sc{flex:1; min-width:0}
+.steps .st{font-size:13px; font-weight:800; color:var(--ink-2); margin-bottom:2px}
+.steps .sb{font-size:14.2px; color:var(--ink-2); white-space:pre-wrap; overflow-x:auto}
+.srclink{display:inline-block; margin-top:12px; font-size:12.5px; color:var(--muted);
+  text-decoration:none; border-bottom:1px dashed #cbd5e1}
+.srclink:hover{color:var(--c); border-color:var(--c)}
+
+footer{max-width:1080px; margin:0 auto; padding:0 16px 60px; color:var(--muted); font-size:12.5px}
+footer a{color:#475569}
+
+/* katex overflow on small screens */
+.katex-display{overflow-x:auto; overflow-y:hidden; padding:2px 0; max-width:100%}
+.steps .sb .katex-display{font-size:.96em; margin:.55em 0}
+.steps .sb::-webkit-scrollbar{height:6px}
+.steps .sb::-webkit-scrollbar-thumb{background:#dbe3f0; border-radius:999px}
+.orig-body{overflow-wrap:anywhere}
+@media (max-width:640px){
+  body{font-size:15.5px}
+  .card{padding:16px 14px 12px; border-radius:15px}
+  .options{grid-template-columns:1fr}
+  .panel-title h2{font-size:19px}
+  .hero{padding:26px 16px 24px}
+  .para{font-size:15px}
+  main{padding:20px 12px 60px}
+  .tool{font-size:12.5px; padding:6px 10px; border-radius:9px}
+  .tools{gap:6px}
+  .btn{font-size:13px; padding:7px 12px}
+  .steps .sb{font-size:13.6px}
+  .steps .sb .katex-display{font-size:.84em}
+}
+@media print{
+  .tabs-wrap,.tools,.actions,footer .no-print{display:none !important}
+  body{background:#fff}
+  .hero{background:#fff; color:#000; border-bottom:2px solid #000}
+  .hero::after{display:none}
+  .hero .sub,.stat,.eyebrow{color:#333}
+  .card{break-inside:avoid; box-shadow:none}
+  .box[hidden]{display:block !important}
+}
+
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-in">
+    <span class="eyebrow"><span class="dot"></span>F4 · 數學 · 上學期測驗一</span>
+    <h1>F4 數學 UT1 溫習 · 六大課題</h1>
+    <p class="sub">36 題 DSE 歷屆試題，按課題分成六頁。先看「題意」理解問法，需要時按「提示」取思路，再按「查看解答」逐行核對做法。</p>
+    <div class="hero-stats">
+      <span class="stat"><b>36</b>題練習</span>
+      <span class="stat"><b>6</b>個課題</span>
+      <span class="stat"><b>2013–2026</b>DSE 真題</span>
+      <span class="stat"><b>中英</b>對照</span>
+    </div>
+    <div class="overall">
+      <div class="overall-top"><span>整體進度</span><span><b id="ov-num">0 / 36</b> · <b id="ov-pct">0%</b></span></div>
+      <div class="overall-bar"><i id="ov-bar"></i></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs-wrap" aria-label="課題分頁">
+  <div class="tabs" role="tablist"></div>
+</nav>
+
+<main id="panels"></main>
+
+<footer>
+  <p>題目與解題步驟整理自 <a href="https://tyhcch1234.github.io/HKDSE-Maths-Solutions/DSE_Maths_By_Topic.html" target="_blank" rel="noopener">HKDSE Maths Solutions（按課題分類）</a>，版權屬香港考試及評核局及原題解作者。中文題意、提示與版面為課堂溫習用途整理。</p>
+  <p class="no-print">進度儲存在此瀏覽器（localStorage），換裝置或清除瀏覽資料後會重設。</p>
+</footer>
+
+<script id="data" type="application/json">{
+"topics": [
+{
+"id": "quad",
+"zh": "二次方程",
+"en": "Quadratic Equations",
+"color": "#4f46e5",
+"desc": "判別式、配方法、根與係數的關係。"
+},
+{
+"id": "complex",
+"zh": "複數",
+"en": "Complex Numbers",
+"color": "#0891b2",
+"desc": "$i^2=-1$、$i$ 的次方週期、共軛與實部／虛部。"
+},
+{
+"id": "factor",
+"zh": "因式分解",
+"en": "Factorization",
+"color": "#c2410c",
+"desc": "抽公因式、十字相乘、平方差、完全平方與分組分解。"
+},
+{
+"id": "indices",
+"zh": "指數化簡",
+"en": "Laws of Indices",
+"color": "#15803d",
+"desc": "指數定律，答案須以正指數表示。"
+},
+{
+"id": "subject",
+"zh": "主項調換",
+"en": "Change of Subject",
+"color": "#7c3aed",
+"desc": "去分母、移項、抽公因式，把指定字母變為主項。"
+},
+{
+"id": "percent",
+"zh": "百分數",
+"en": "Percentages",
+"color": "#be123c",
+"desc": "成本、標價、售價、折扣與利潤率的關係。"
+}
+],
+"items": [
+{
+"topic": "quad",
+"year": "2013",
+"paper": "卷二",
+"qno": "第6題",
+"marks": "",
+"stem": "Let $k$ be a constant. Solve the equation\n $x^{2}=9k^{2}$.",
+"opts": [
+{
+"k": "A",
+"v": "$x=3k$"
+},
+{
+"k": "B",
+"v": "$x=-3k$"
+},
+{
+"k": "C",
+"v": "$x=3k$  or  $x=-3k$"
+},
+{
+"k": "D",
+"v": "$x=3k$  or  $x=3k$"
+}
+],
+"para": "設 $k$ 為常數，解方程 $x^2=9k^2$。",
+"hint": "兩邊開方時要寫出正、負兩個根，即 $x=\\pm 3k$。",
+"ans": "C（$x=3k$ 或 $x=-3k$）",
+"steps": [
+{
+"t": "Write down what is given",
+"b": "The equation is\n $$x^{2}=9k^{2}.$$\n Here $k$ is a constant (a fixed number), so the right-hand side is just a number; the unknown is $x$."
+},
+{
+"t": "Bring everything to one side & factorise",
+"b": "$$x^{2}-9k^{2}=0$$\n This is a difference of two squares:\n $$x^{2}-(3k)^{2}=0 \\quad\\Longrightarrow\\quad (x-3k)(x+3k)=0$$"
+},
+{
+"t": "Apply the zero-product property",
+"b": "A product is zero only if at least one factor is zero:\n $$x-3k=0 \\quad\\text{or}\\quad x+3k=0$$\n So\n $$x=3k \\quad\\text{or}\\quad x=-3k$$"
+},
+{
+"t": "Check on a number line",
+"b": "The two roots $\\pm 3k$ are symmetric about $0$:\n $$\\underbrace{-3k}_{\\text{root 1}}\\;\\longleftarrow\\;0\\;\\longrightarrow\\;\\underbrace{3k}_{\\text{root 2}}$$\n Both values satisfy $x^{2}=9k^{2}$ because squaring removes the sign:\n $(3k)^{2}=9k^{2}$  and  $(-3k)^{2}=9k^{2}$. ✔"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2013_P2_Q6.html"
+},
+{
+"topic": "quad",
+"year": "2014",
+"paper": "卷二",
+"qno": "第4題",
+"marks": "",
+"stem": "Let $a$ be a constant. If the quadratic equation\n$$x^{2}+ax+a=1$$\n has equal roots, then $a=$",
+"opts": [
+{
+"k": "A",
+"v": "$-1$"
+},
+{
+"k": "B",
+"v": "$2$"
+},
+{
+"k": "C",
+"v": "$0$ or $-4$"
+},
+{
+"k": "D",
+"v": "$0$ or $4$"
+}
+],
+"para": "設 $a$ 為常數。若二次方程 $x^2+ax+a=1$ 有等根，求 $a$。",
+"hint": "先移項成標準式 $x^2+ax+(a-1)=0$，再令判別式 $\\Delta=0$。",
+"ans": "B（$a=2$）",
+"steps": [
+{
+"t": "Write the equation in standard form",
+"b": "Move every term to one side so the equation reads $ax^{2}+bx+c=0$:\n$$x^{2}+ax+a-1=0$$\n So here $a_{\\text{coeff}}=1$, $b=a$ and $c=a-1$."
+},
+{
+"t": "Set the discriminant equal to zero",
+"b": "A quadratic has equal (repeated) roots exactly when\n$$\\Delta=b^{2}-4ac=0$$\n$$a^{2}-4(1)(a-1)=0$$"
+},
+{
+"t": "Simplify and factorise",
+"b": "$$a^{2}-4a+4=0$$\n$$(a-2)^{2}=0$$"
+},
+{
+"t": "",
+"b": "Solve for $a$\n$$a-2=0 \\;\\Rightarrow\\; a=2 \\;\\text{(repeated)}$$\n Only one value of $a$ makes the discriminant zero."
+},
+{
+"t": "Check against the options",
+"b": "$a=2$ matches option B. (Options C and D would come from a different equation, e.g. $a^{2}-4a=0$.)"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2014_P2_Q4.html"
+},
+{
+"topic": "quad",
+"year": "2025",
+"paper": "卷二",
+"qno": "第5題",
+"marks": "",
+"stem": "Let $k$ be a constant. Solve the equation\n $$x^{2}+4x=k^{2}-2k-3.$$",
+"opts": [
+{
+"k": "A",
+"v": "$\\;x=-k+3$  or  $x=k+1$"
+},
+{
+"k": "B",
+"v": "$\\;x=k-3$  or  $x=k+1$"
+},
+{
+"k": "C",
+"v": "$\\;x=k-3$  or  $x=-k-1$"
+},
+{
+"k": "D",
+"v": "$\\;x=-k+3$  or  $x=-k-1$"
+}
+],
+"para": "設 $k$ 為常數，解方程 $x^2+4x=k^2-2k-3$。",
+"hint": "兩邊同時加 4，把左邊配成 $(x+2)^2$，右邊亦成完全平方。",
+"ans": "C（$x=k-3$ 或 $x=-k-1$）",
+"steps": [
+{
+"t": "Make the right-hand side zero",
+"b": "Bring every term to the left so we get a quadratic equation in $x$:\n $$x^{2}+4x\\;-\\;(k^{2}-2k-3)=0$$\n The constant term factorises beautifully:\n $$k^{2}-2k-3=(k-3)(k+1)$$"
+},
+{
+"t": "Factorise by the cross method",
+"b": "$$x^{2}+4x-(k-3)(k+1)=0$$\n Try the factor pair $[x-(k-3)]$ and $[x+(k+1)]$:\n $$\\underbrace{x\\cdot x=x^{2}}_{\\text{first}}\\qquad\n \\underbrace{x(k+1)-x(k-3)=x\\big[(k+1)-(k-3)\\big]=4x}_{\\text{middle}}\\qquad\n \\underbrace{-(k-3)(k+1)}_{\\text{last}}$$\n Hence\n $$\\big[x-(k-3)\\big]\\big[x+(k+1)\\big]=0$$"
+},
+{
+"t": "Apply the zero-product property (Alternative: quadratic formula)",
+"b": "Each factor may be zero:\n $$x=k-3\\quad\\text{or}\\quad x=-k-1$$\n Alternatively, by the quadratic formula with $a=1,\\;b=4,\\;c=-(k-3)(k+1)$:\n $$x=\\frac{-4\\pm\\sqrt{4^{2}-4[-(k-3)(k+1)]}}{2}\n =\\frac{-4\\pm\\sqrt{4k^{2}-8k+4}}{2}\n =\\frac{-4\\pm\\sqrt{4(k-1)^{2}}}{2}$$\n $$=\\frac{-4\\pm 2(k-1)}{2}$$"
+},
+{
+"t": "Simplify and choose the option",
+"b": "Taking the $+$ sign:\n $$x=\\frac{-4+(2k-2)}{2}=\\frac{2k-6}{2}=k-3$$\n Taking the $-$ sign:\n $$x=\\frac{-4-(2k-2)}{2}=\\frac{-2k-2}{2}=-k-1$$\n So the two roots are $x=k-3$ or $x=-k-1$, which is option C."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2025_P2_Q5.html"
+},
+{
+"topic": "quad",
+"year": "2026",
+"paper": "卷二",
+"qno": "第6題",
+"marks": "",
+"stem": "Solve $(x+2s)(x+t)=sx+st$, where $s$ and $t$ are constants.",
+"opts": [
+{
+"k": "A",
+"v": "$x=-s$"
+},
+{
+"k": "B",
+"v": "$x=-2s$"
+},
+{
+"k": "C",
+"v": "$x=-s$ or $x=-t$"
+},
+{
+"k": "D",
+"v": "$x=-2s$ or $x=-t$"
+}
+],
+"para": "解方程 $(x+2s)(x+t)=sx+st$，其中 $s$、$t$ 為常數。",
+"hint": "展開後把所有項移到一邊，再以分組法分解成 $(x+s)(x+t)=0$。",
+"ans": "C（$x=-s$ 或 $x=-t$）",
+"steps": [
+{
+"t": "Expand the left-hand side",
+"b": "$$(x+2s)(x+t)=x^2+tx+2sx+2st=x^2+(2s+t)x+2st$$"
+},
+{
+"t": "Bring everything to one side",
+"b": "$$x^2+(2s+t)x+2st=sx+st$$\n$$x^2+(2s+t-s)x+(2st-st)=0\\ \\Rightarrow\\ x^2+(s+t)x+st=0$$"
+},
+{
+"t": "Factor and solve",
+"b": "$$(x+s)(x+t)=0$$\n Therefore $x=-s$ or $x=-t$, which is option C."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2026_P2_Q6.html"
+},
+{
+"topic": "quad",
+"year": "2018",
+"paper": "卷二",
+"qno": "第36題",
+"marks": "",
+"stem": "If $m \\ne n$ and $2m^2 + 5m = 2n^2 + 5n = 14$, then $(m+2)(n+2) =$",
+"opts": [
+{
+"k": "A",
+"v": "$-8$"
+},
+{
+"k": "B",
+"v": "$2$"
+},
+{
+"k": "C",
+"v": "$6$"
+},
+{
+"k": "D",
+"v": "$16$"
+}
+],
+"para": "已知 $m\\ne n$，且 $2m^2+5m=2n^2+5n=14$，求 $(m+2)(n+2)$。",
+"hint": "$m$、$n$ 是方程 $2x^2+5x-14=0$ 的兩個根，用根和 $=-\\frac{5}{2}$、根積 $=-7$。",
+"ans": "A（$-8$）",
+"steps": [
+{
+"t": "",
+"b": "Interpret the given information.\n Since $2m^2+5m=14$ and $2n^2+5n=14$ with $m \\ne n$, both $m$ and $n$ satisfy the same quadratic equation\n $$2x^2+5x-14=0.$$\n Hence $m$ and $n$ are the two distinct roots of this equation."
+},
+{
+"t": "",
+"b": "Sum and product of roots.\n For $ax^2+bx+c=0$ with roots $m,n$:\n $$m+n=-\\frac{b}{a},\\qquad mn=\\frac{c}{a}.$$\n Here $a=2,\\;b=5,\\;c=-14$, so\n $$m+n=-\\frac{5}{2},\\qquad mn=\\frac{-14}{2}=-7.$$"
+},
+{
+"t": "",
+"b": "Expand the target expression.\n $$(m+2)(n+2)=mn+2m+2n+4=mn+2(m+n)+4.$$"
+},
+{
+"t": "",
+"b": "Substitute and evaluate.\n $$(m+2)(n+2)=(-7)+2\\left(-\\frac{5}{2}\\right)+4$$\n $$=-7-5+4=-8.$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2018_P2_Q36.html"
+},
+{
+"topic": "quad",
+"year": "2013",
+"paper": "卷二",
+"qno": "第35題",
+"marks": "",
+"stem": "If $\\alpha\\neq\\beta$ and\n $\\begin{cases}3\\alpha=\\alpha^{2}-5\\\\[2pt] 3\\beta=\\beta^{2}-5\\end{cases}$,\n then $\\alpha\\beta=$",
+"opts": [
+{
+"k": "A",
+"v": "3"
+},
+{
+"k": "B",
+"v": "−3"
+},
+{
+"k": "C",
+"v": "5"
+},
+{
+"k": "D",
+"v": "−5"
+}
+],
+"para": "已知 $\\alpha\\ne\\beta$，且 $3\\alpha=\\alpha^2-5$、$3\\beta=\\beta^2-5$，求 $\\alpha\\beta$。",
+"hint": "$\\alpha$、$\\beta$ 是 $x^2-3x-5=0$ 的兩個根，根積 $=\\frac{c}{a}$。",
+"ans": "D（$-5$）",
+"steps": [
+{
+"t": "",
+"b": "Recognise what $\\alpha$ and $\\beta$ are\n Since $3\\alpha=\\alpha^{2}-5$ and $3\\beta=\\beta^{2}-5$, both $\\alpha$ and $\\beta$ satisfy the same equation\n $x^{2}-3x-5=0$. Given $\\alpha\\neq\\beta$, they are the two distinct roots of\n$$x^{2}-3x-5=0$$"
+},
+{
+"t": "Write the equation in standard form",
+"b": "Rearranging $3x=x^{2}-5$ gives the standard form $ax^{2}+bx+c=0$:\n$$x^{2}-3x-5=0 \\quad\\Rightarrow\\quad a=1,\\; b=-3,\\; c=-5$$"
+},
+{
+"t": "Apply the sum & product of roots",
+"b": "For $ax^{2}+bx+c=0$ with roots $\\alpha,\\beta$:\n$$\\alpha+\\beta=-\\frac{b}{a}=-\\frac{-3}{1}=3,\\qquad \\alpha\\beta=\\frac{c}{a}=\\frac{-5}{1}=-5$$"
+},
+{
+"t": "Conclusion",
+"b": "Hence $\\alpha\\beta=\\dfrac{-5}{1}=-5$, which is option D."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2013_P2_Q35.html"
+},
+{
+"topic": "complex",
+"year": "2022",
+"paper": "卷二",
+"qno": "第35題",
+"marks": "",
+"stem": "Let\n$$z = 4 + 5i^{10} - ki^{15} + 6i^{21} + 2ki^{28},$$\n where $k$ is a real number. If the real part and the imaginary part of $z$ are equal, then the real part of $z$ is\n• 7.\n• 13.\n• 17.\n• 25.",
+"opts": [],
+"para": "設 $z=4+5i^{10}-ki^{15}+6i^{21}+2ki^{28}$，$k$ 為實數。若 $z$ 的實部等於虛部，求 $z$ 的實部。",
+"hint": "$i$ 的次方以 4 為週期：$i^{10}=-1,\\ i^{15}=-i,\\ i^{21}=i,\\ i^{28}=1$，再令實部 $=$ 虛部。",
+"ans": "B（實部 $=13$）",
+"steps": [
+{
+"t": "",
+"b": "Recall the cycle of powers of $i$.\n$$i^1=i,\\quad i^2=-1,\\quad i^3=-i,\\quad i^4=1,$$\n and the pattern repeats every 4. Hence reduce each exponent modulo 4:\n$$i^{10}=i^{2}=-1,\\quad i^{15}=i^{3}=-i,\\quad i^{21}=i^{1}=i,\\quad i^{28}=i^{0}=1.$$\n Hint: divide the index by 4 and keep the remainder."
+},
+{
+"t": "Substitute the simplified powers.",
+"b": "$$z = 4 + 5(-1) - k(-i) + 6(i) + 2k(1)$$\n$$z = 4 - 5 + ki + 6i + 2k.$$\n Watch the signs: $-k(-i)=+ki$, and $2k(1)=2k$."
+},
+{
+"t": "Collect real and imaginary parts.",
+"b": "$$z = \\underbrace{(2k-1)}_{\\text{Re}(z)} + \\underbrace{(k+6)}_{\\text{Im}(z)}i.$$\n Group the terms without $i$ together, and those with $i$ together."
+},
+{
+"t": "",
+"b": "Apply the condition $\\mathrm{Re}(z)=\\mathrm{Im}(z)$.\n$$2k-1 = k+6$$\n$$2k-k = 6+1 \\quad\\Longrightarrow\\quad k = 7.$$\n A single linear equation in $k$."
+},
+{
+"t": "",
+"b": "Find the real part of $z$.\n$$\\mathrm{Re}(z) = 2k-1 = 2(7)-1 = 13.$$\n (Check: $\\mathrm{Im}(z)=k+6=13$ — equal, as required.)\n$$z = 13 + 13i.$$\n Substitute $k=7$ back into $2k-1$."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2022_P2_Q35.html"
+},
+{
+"topic": "complex",
+"year": "2014",
+"paper": "卷二",
+"qno": "第36題",
+"marks": "",
+"stem": "If $\\beta$ is a real number, then the conjugate of $\\beta-2i$ is",
+"opts": [
+{
+"k": "A",
+"v": "$\\beta+2i$"
+},
+{
+"k": "B",
+"v": "$-\\beta+2i$"
+},
+{
+"k": "C",
+"v": "$-\\beta-2i$"
+},
+{
+"k": "D",
+"v": "$2-\\beta i$"
+}
+],
+"para": "設 $\\beta$ 為實數，求 $\\beta-2i$ 的共軛。",
+"hint": "共軛只改變虛部的正負號，實部不變。",
+"ans": "A（$\\beta+2i$）",
+"steps": [
+{
+"t": "Identify the given complex number",
+"b": "The question gives the complex number\n$$z=\\beta-2i$$\n where $\\beta$ is real. So the real part is $\\beta$ and the imaginary part is $-2$."
+},
+{
+"t": "Recall the definition of the conjugate",
+"b": "For any complex number $z=a+bi$ (with $a,b$ real), the conjugate is\n$$\\overline{z}=a-bi.$$\n The real part stays the same, and the sign of the imaginary part flips."
+},
+{
+"t": "",
+"b": "Apply it to $z=\\beta-2i$\n Here $a=\\beta$ and $b=-2$. Substituting,\n$$\\overline{\\beta-2i}=\\beta-(-2)i=\\beta+2i.$$"
+},
+{
+"t": "Check the options",
+"b": "$$\\overline{\\beta-2i}=\\beta+2i$$\n matches option A.\n Options B and C change the real part to $-\\beta$, which is wrong since the real part must stay the same.\n Option D swaps the real and imaginary parts — not a conjugate."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2014_P2_Q36.html"
+},
+{
+"topic": "complex",
+"year": "2015",
+"paper": "卷二",
+"qno": "第35題",
+"marks": "",
+"stem": "Let $z=(a+5)i^{6}+(a-3)i^{7}$, where $a$ is a real number.\n If $z$ is a real number, then $a=$",
+"opts": [
+{
+"k": "A",
+"v": "$-5$"
+},
+{
+"k": "B",
+"v": "$-3$"
+},
+{
+"k": "C",
+"v": "$3$"
+},
+{
+"k": "D",
+"v": "$5$"
+}
+],
+"para": "設 $z=(a+5)i^{6}+(a-3)i^{7}$，$a$ 為實數。若 $z$ 是實數，求 $a$。",
+"hint": "$i^6=-1$、$i^7=-i$，整理後令虛部係數等於 0。",
+"ans": "C（$a=3$）",
+"steps": [
+{
+"t": "",
+"b": "Recall the powers of $i$\n The powers cycle with period 4:\n $i^{1}=i,\\quad i^{2}=-1,\\quad i^{3}=-i,\\quad i^{4}=1,\\quad i^{5}=i,\\ \\dots$\n So reduce the exponents modulo 4:   $6 \\equiv 2 \\pmod 4$ and $7 \\equiv 3 \\pmod 4$.\n $i^{6}=i^{2}=-1,\\qquad i^{7}=i^{3}=-i$"
+},
+{
+"t": "",
+"b": "Substitute into the expression for $z$\n $$z=(a+5)i^{6}+(a-3)i^{7}$$\n $$=(a+5)(-1)+(a-3)(-i)$$"
+},
+{
+"t": "Separate the real and imaginary parts",
+"b": "$$z=\\underbrace{(-a-5)}_{\\text{real part}}+\\underbrace{(-a+3)}_{\\text{imaginary part}}\\,i$$\n Write it in the standard form $z=x+yi$:\n Re$(z)$\n$x=-a-5$\n Im$(z)$\n$y=-a+3$"
+},
+{
+"t": "",
+"b": "Impose the condition \"$z$ is real\"\n Since $z$ is real, its imaginary part must be zero:\n $-a+3=0$\n $a=3$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2015_P2_Q35.html"
+},
+{
+"topic": "complex",
+"year": "2026",
+"paper": "卷二",
+"qno": "第34題",
+"marks": "",
+"stem": "If $\\beta$ and $\\dfrac{i^4+2i^3+3i^2+4i}{\\beta i-1}$ are real numbers, then $\\beta=$",
+"opts": [
+{
+"k": "A",
+"v": "$-2$"
+},
+{
+"k": "B",
+"v": "$-1$"
+},
+{
+"k": "C",
+"v": "$1$"
+},
+{
+"k": "D",
+"v": "$2$"
+}
+],
+"para": "若 $\\beta$ 及 $\\dfrac{i^4+2i^3+3i^2+4i}{\\beta i-1}$ 均為實數，求 $\\beta$。",
+"hint": "先算分子得 $-2+2i$，再把分母有理化，令虛部為 0。",
+"ans": "C（$\\beta=1$）",
+"steps": [
+{
+"t": "Numerator",
+"b": "$i^4+2i^3+3i^2+4i=1-2i-3+4i=-2+2i$."
+},
+{
+"t": "Rationalise",
+"b": "$\\dfrac{-2+2i}{-1+\\beta i}\\cdot\\dfrac{-1-\\beta i}{-1-\\beta i}=\\dfrac{(2+2\\beta)+(2\\beta-2)i}{1+\\beta^2}$."
+},
+{
+"t": "Imaginary part = 0",
+"b": "$2\\beta-2=0\\Rightarrow \\beta=1$."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2026_P2_Q34.html"
+},
+{
+"topic": "complex",
+"year": "2023",
+"paper": "卷二",
+"qno": "第34題",
+"marks": "",
+"stem": "If $k$ is a real number, then the real part of\n $\\displaystyle \\frac{i}{k-i}+\\frac{2}{k+i}$ is",
+"opts": [
+{
+"k": "A",
+"v": "$\\dfrac{k+2}{k^{2}-1}$"
+},
+{
+"k": "B",
+"v": "$\\dfrac{2k-1}{k^{2}+1}$"
+},
+{
+"k": "C",
+"v": "$\\dfrac{k-2}{k^{2}+1}$"
+},
+{
+"k": "D",
+"v": "$\\dfrac{k+2}{k^{2}+1}$"
+}
+],
+"para": "設 $k$ 為實數，求 $\\dfrac{i}{k-i}+\\dfrac{2}{k+i}$ 的實部。",
+"hint": "逐項乘分母的共軛有理化，分母同為 $k^2+1$，再加起實部。",
+"ans": "B（$\\dfrac{2k-1}{k^2+1}$）",
+"steps": [
+{
+"t": "Read the expression and the two denominators",
+"b": "$$E=\\frac{i}{k-i}+\\frac{2}{k+i},\\qquad k\\in\\mathbb{R}$$\n Hint: $k-i$ and $k+i$ are conjugates. Multiply the numerator and denominator of each fraction by the conjugate of its own denominator, so every denominator becomes real."
+},
+{
+"t": "Rationalise each denominator",
+"b": "$$\\frac{i}{k-i}=\\frac{i(k+i)}{(k-i)(k+i)},\\qquad\n \\frac{2}{k+i}=\\frac{2(k-i)}{(k-i)(k+i)}$$\n Hint: $(k-i)(k+i)=k^{2}-i^{2}=k^{2}+1$, a positive real number."
+},
+{
+"t": "",
+"b": "Combine over the common real denominator $k^{2}+1$\n $$E=\\frac{i(k+i)+2(k-i)}{(k-i)(k+i)}=\\frac{i(k+i)+2(k-i)}{k^{2}+1}$$\n Hint: Once the denominators agree, only the numerators need to be added."
+},
+{
+"t": "",
+"b": "Expand the numerator, using $i^{2}=-1$\n $$i(k+i)=ki+i^{2}=ki-1,\\qquad 2(k-i)=2k-2i$$\n $$i(k+i)+2(k-i)=(2k-1)+(k-2)i$$\n Hint: Group the terms: real numbers together, and multiples of $i$ together."
+},
+{
+"t": "",
+"b": "Split $E$ into real part + imaginary part\n $$E=\\frac{(2k-1)+(k-2)i}{k^{2}+1}\n =\\underbrace{\\frac{2k-1}{k^{2}+1}}_{\\text{real part}}\n +\\underbrace{\\frac{k-2}{k^{2}+1}}_{\\text{imaginary part}}i$$\n Hint: Since $k$ is real, $k^{2}+1\\neq 0$, so the split into real and imaginary parts is valid."
+},
+{
+"t": "State the real part and pick the option",
+"b": "$$\\operatorname{Re}(E)=\\frac{2k-1}{k^{2}+1}\\quad\\Longrightarrow\\quad \\boxed{\\text{B}}$$\n Hint: The imaginary denominator $k^{2}+1$ appears in option B; watch out for traps using $k^{2}-1$ (option A) — that would require a real denominator, which does not occur here."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2023_P2_Q34.html"
+},
+{
+"topic": "complex",
+"year": "2019",
+"paper": "卷二",
+"qno": "第34題",
+"marks": "",
+"stem": "If $a$ is a real number, then the real part of\n $$\\frac{4+i^{5}}{a+i}-i^{6}$$\n is",
+"opts": [
+{
+"k": "A",
+"v": "$\\dfrac{4a+1}{a^{2}-1}$"
+},
+{
+"k": "B",
+"v": "$\\dfrac{4a+1}{a^{2}+1}$"
+},
+{
+"k": "C",
+"v": "$\\dfrac{a^{2}+4a+2}{a^{2}+1}$"
+},
+{
+"k": "D",
+"v": "$\\dfrac{a^{2}+4a+2}{a^{2}-1}$"
+}
+],
+"para": "設 $a$ 為實數，求 $\\dfrac{4+i^5}{a+i}-i^6$ 的實部。",
+"hint": "$i^5=i$、$i^6=-1$，先化簡，再把 $\\frac{4+i}{a+i}$ 有理化。",
+"ans": "C（$\\dfrac{a^2+4a+2}{a^2+1}$）",
+"steps": [
+{
+"t": "",
+"b": "Evaluate the powers of $i$\n $i^2=-1,\\; i^3=-i,\\; i^4=1$\n $i^{5}=i^{4}\\cdot i=1\\cdot i=i$\n $i^{6}=i^{4}\\cdot i^{2}=1\\cdot(-1)=-1$"
+},
+{
+"t": "Substitute back into the expression",
+"b": "$\\dfrac{4+i^{5}}{a+i}-i^{6}=\\dfrac{4+i}{a+i}-(-1)=\\dfrac{4+i}{a+i}+1$"
+},
+{
+"t": "Multiply numerator and denominator by the conjugate",
+"b": "$\\dfrac{4+i}{a+i}\\cdot\\dfrac{a-i}{a-i}=\\dfrac{(4+i)(a-i)}{(a+i)(a-i)}$"
+},
+{
+"t": "Expand the numerator",
+"b": "$(4+i)(a-i)=4a-4i+ai-i^{2}=4a-4i+ai+1=(4a+1)+(a-4)i$"
+},
+{
+"t": "Simplify the denominator",
+"b": "$(a+i)(a-i)=a^{2}-i^{2}=a^{2}+1$"
+},
+{
+"t": "Split into real and imaginary parts",
+"b": "$\\dfrac{4+i}{a+i}=\\dfrac{4a+1}{a^{2}+1}+\\dfrac{a-4}{a^{2}+1}i$"
+},
+{
+"t": "",
+"b": "Add the extra real term $+1$\n $\\text{Real part}=\\dfrac{4a+1}{a^{2}+1}+1\n =\\dfrac{4a+1+(a^{2}+1)}{a^{2}+1}\n =\\dfrac{a^{2}+4a+2}{a^{2}+1}$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2019_P2_Q34.html"
+},
+{
+"topic": "factor",
+"year": "2026",
+"paper": "卷一",
+"qno": "第4題",
+"marks": "4",
+"stem": "Factorize\n(a) $5x^2y+17xy-12y$,\n(b) $5x^2y+17xy-12y-10x+6$.",
+"opts": [],
+"para": "因式分解：(a) $5x^2y+17xy-12y$；(b) $5x^2y+17xy-12y-10x+6$。",
+"hint": "(a) 先抽公因式 $y$，再十字相乘；(b) 把 (a) 的結果代回，與 $-10x+6$ 分組。",
+"ans": "(a) $y(5x-3)(x+4)$；(b) $(5x-3)[y(x+4)-2]$",
+"steps": [
+{
+"t": "PART (a) — common factor",
+"b": "Every term contains y, so take it out:\n$$5x^2y+17xy-12y=y(5x^2+17x-12)$$"
+},
+{
+"t": "PART (a) — split the middle term",
+"b": "For $5x^2+17x-12$: find two numbers with product $5\\times(-12)=-60$ and sum $17$, i.e. $20$ and $-3$:\n$$5x^2+20x-3x-12=5x(x+4)-3(x+4)=(5x-3)(x+4)$$\n$$\\therefore\\; 5x^2y+17xy-12y=y(5x-3)(x+4)$$"
+},
+{
+"t": "PART (b) — group using part (a)",
+"b": "Group the first three terms (result of (a)) and the last two terms:\n$$5x^2y+17xy-12y-10x+6 = y(5x-3)(x+4)-2(5x-3)$$"
+},
+{
+"t": "PART (b) — common binomial factor",
+"b": "Both groups contain $(5x-3)$:\n$$=(5x-3)\\big[y(x+4)-2\\big]$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2026_P1_Q4.html"
+},
+{
+"topic": "factor",
+"year": "2025",
+"paper": "卷一",
+"qno": "第5題",
+"marks": "4",
+"stem": "Factorize\n (a)  $10pr - 6qr$,\n (b)  $25p^{2} - 9q^{2}$,\n (c)  $25p^{2} - 9q^{2} - 10pr + 6qr$.",
+"opts": [],
+"para": "因式分解：(a) $10pr-6qr$；(b) $25p^2-9q^2$；(c) $25p^2-9q^2-10pr+6qr$。",
+"hint": "(a) 抽 $2r$；(b) 平方差；(c) 把 (a)(b) 合起來分組，抽公因式 $(5p-3q)$。",
+"ans": "(a) $2r(5p-3q)$；(b) $(5p+3q)(5p-3q)$；(c) $(5p-3q)(5p+3q-2r)$",
+"steps": [
+{
+"t": "Part (a): take out the common factor",
+"b": "Look at each term: $10pr = 2\\cdot 5\\cdot p\\cdot r$ and $6qr = 2\\cdot 3\\cdot q\\cdot r$.\n The common factor is $2r$ (the HCF of $10$ and $6$ is $2$; both terms contain $r$).\n $$10pr - 6qr = 2r\\,(5p - 3q)$$\n Hint: always check for an HCF first — it is the fastest route to marks in (a)."
+},
+{
+"t": "Part (b): recognise the difference of squares",
+"b": "Write each term as a perfect square: $25p^{2} = (5p)^{2}$ and $9q^{2} = (3q)^{2}$.\n Apply $x^{2} - y^{2} = (x+y)(x-y)$ with $x = 5p$, $y = 3q$:\n $$25p^{2} - 9q^{2} = (5p + 3q)(5p - 3q)$$\n Hint: a two-term expression with a minus sign is a strong signal for the difference of squares."
+},
+{
+"t": "Part (c): group the four terms in pairs",
+"b": "Group the squares together, and the $r$-terms together — note the sign change when you bracket the last two terms:\n $$25p^{2} - 9q^{2} - 10pr + 6qr = \\bigl(25p^{2} - 9q^{2}\\bigr) - \\bigl(10pr - 6qr\\bigr)$$\n Hint: choose the grouping so that each bracket factors into something containing $(5p-3q)$."
+},
+{
+"t": "Factorize each bracket (reuse (a) and (b))",
+"b": "First bracket — difference of squares from part (b): $\\;25p^{2} - 9q^{2} = (5p+3q)(5p-3q)$.\n Second bracket — common factor from part (a): $\\;10pr - 6qr = 2r(5p-3q)$.\n $$= (5p+3q)(5p-3q) - 2r(5p-3q)$$\n Hint: this is exactly why part (a) and part (b) were asked first — you are meant to reuse them."
+},
+{
+"t": "",
+"b": "Take out the common bracket $(5p-3q)$\n Both terms share the factor $(5p-3q)$:\n $$= (5p-3q)\\bigl[(5p+3q) - 2r\\bigr] = (5p-3q)(5p+3q-2r)$$\n Hint: the shared bracket $(5p-3q)$ plays the role of a single \"common factor\" — factor it out like any HCF."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2025_P1_Q5.html"
+},
+{
+"topic": "factor",
+"year": "2024",
+"paper": "卷一",
+"qno": "第3題",
+"marks": "3",
+"stem": "Factorize\n (a) $\\; 6r^2 - 13rs - 28s^2$,\n (b) $\\; 4r - 14s + 6r^2 - 13rs - 28s^2$.",
+"opts": [],
+"para": "因式分解：(a) $6r^2-13rs-28s^2$；(b) $4r-14s+6r^2-13rs-28s^2$。",
+"hint": "(a) 十字相乘找兩數，積 $-168$、和 $-13$；(b) 留意 $4r-14s=2(2r-7s)$。",
+"ans": "(a) $(2r-7s)(3r+4s)$；(b) $(2r-7s)(3r+4s+2)$",
+"steps": [
+{
+"t": "Part (a) — set up the factorization",
+"b": "We want to write\n$$6r^2 - 13rs - 28s^2 = (\\,?\\,r \\;?\\;\\; ?\\,s)(\\,?\\,r \\;?\\;\\; ?\\,s)$$\n Since $6 = \\mathbf{2 \\times 3}$ and $28 = \\mathbf{4 \\times 7}$, try coefficients $2,3$ for $r$ and $4,7$ for $s$."
+},
+{
+"t": "Part (a) — cross-check the middle term",
+"b": "Expand $(2r - 7s)(3r + 4s)$:\n$$\\begin{aligned}\n (2r)(3r) &= 6r^2 \\\\\n (2r)(4s) + (-7s)(3r) &= 8rs - 21rs = -13rs \\\\\n (-7s)(4s) &= -28s^2\n \\end{aligned}$$\n So the product is exactly $6r^2 - 13rs - 28s^2$."
+},
+{
+"t": "Part (a) — answer",
+"b": "$$\\boxed{\\,6r^2 - 13rs - 28s^2 = (2r - 7s)(3r + 4s)\\,}$$"
+},
+{
+"t": "",
+"b": "Part (b) — take out the common factor $2$\n Group the four terms and factor out $2$ from the first two:\n$$4r - 14s + 6r^2 - 13rs - 28s^2\n = 2(2r - 7s) + \\bigl(6r^2 - 13rs - 28s^2\\bigr)$$\n By part (a), the bracket factorizes as $(2r - 7s)(3r + 4s)$:\n$$= 2(2r - 7s) + (2r - 7s)(3r + 4s)$$"
+},
+{
+"t": "Part (b) — extract the common bracket",
+"b": "Take $(2r - 7s)$ out as a common factor:\n$$= (2r - 7s)\\bigl[\\,2 + (3r + 4s)\\,\\bigr]\n = (2r - 7s)(2 + 3r + 4s)$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2024_P1_Q3.html"
+},
+{
+"topic": "factor",
+"year": "2022",
+"paper": "卷一",
+"qno": "第4題",
+"marks": "",
+"stem": "Factorize\n (a) $\\;9c^{2}-6c+1\\,,$\n (b) $\\;(4c+d)^{2}-9c^{2}+6c-1\\,.$",
+"opts": [],
+"para": "因式分解：(a) $9c^2-6c+1$；(b) $(4c+d)^2-9c^2+6c-1$。",
+"hint": "(a) 完全平方 $(3c-1)^2$；(b) 把尾三項寫成 $-(3c-1)^2$，再用平方差。",
+"ans": "(a) $(3c-1)^2$；(b) $(7c+d-1)(c+d+1)$",
+"steps": [
+{
+"t": "Part (a) — recognise a perfect square",
+"b": "$9c^{2}-6c+1 = (3c)^{2}-2(3c)(1)+(1)^{2}$"
+},
+{
+"t": "",
+"b": "Apply $a^{2}-2ab+b^{2}=(a-b)^{2}$\n $\\therefore\\; 9c^{2}-6c+1=(3c-1)^{2}$   (1A)"
+},
+{
+"t": "Part (b) — spot the hidden part (a)",
+"b": "$(4c+d)^{2}-9c^{2}+6c-1=(4c+d)^{2}-(\\underbrace{9c^{2}-6c+1}_{\\text{from (a)}})$\n $\\phantom{(4c+d)^{2}-9c^{2}+6c-1}=(4c+d)^{2}-(3c-1)^{2}$   (1M)"
+},
+{
+"t": "",
+"b": "Difference of two squares $A^{2}-B^{2}=(A+B)(A-B)$\n $=\\big[(4c+d)+(3c-1)\\big]\\big[(4c+d)-(3c-1)\\big]$   (1M)"
+},
+{
+"t": "Simplify each factor",
+"b": "$=(7c+d-1)(c+d+1)$   (1A)"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2022_P1_Q4.html"
+},
+{
+"topic": "factor",
+"year": "2017",
+"paper": "卷一",
+"qno": "第3題",
+"marks": "3",
+"stem": "Factorize \n (a)   $x^{2}-4xy+3y^{2}$,\n (b)   $x^{2}-4xy+3y^{2}+11x-33y$.",
+"opts": [],
+"para": "因式分解：(a) $x^2-4xy+3y^2$；(b) $x^2-4xy+3y^2+11x-33y$。",
+"hint": "(a) 十字相乘；(b) 用 (a) 的結果，並把 $11x-33y$ 抽出 $11(x-3y)$。",
+"ans": "(a) $(x-3y)(x-y)$；(b) $(x-3y)(x-y+11)$",
+"steps": [
+{
+"t": "Part (a) — Decide the method",
+"b": "We need two numbers that multiply to $+3$ and add to $-4$.\n These are $-3$ and $-1$, so the two brackets are $(x-3y)$ and $(x-y)$."
+},
+{
+"t": "Part (a) — Factorize by grouping",
+"b": "$x^{2}-4xy+3y^{2}$\n $= x^{2}-3xy-xy+3y^{2}$\n $= x(x-3y)-y(x-3y)$    (group in pairs)\n $= (x-3y)(x-y)$"
+},
+{
+"t": "Part (b) — Reuse the result from (a)",
+"b": "Part (b) shares the first three terms, so replace them with the answer from (a):\n $$x^{2}-4xy+3y^{2}+11x-33y = (x-3y)(x-y)+11x-33y.$$"
+},
+{
+"t": "Part (b) — Take out the common factor",
+"b": "$$11x-33y = 11(x-3y)$$\n So\n $$(x-3y)(x-y)+11(x-3y) = (x-3y)\\big[(x-y)+11\\big].$$"
+},
+{
+"t": "Simplify the second bracket",
+"b": "$(x-3y)\\big[(x-y)+11\\big] = (x-3y)(x-y+11)$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2017_P1_Q3.html"
+},
+{
+"topic": "factor",
+"year": "2016",
+"paper": "卷二",
+"qno": "第3題",
+"marks": "",
+"stem": "Factorise: $16-(2x-3y)^2=$",
+"opts": [
+{
+"k": "A",
+"v": "$(4-2x-3y)(4+2x+3y)$"
+},
+{
+"k": "B",
+"v": "$(4-2x-3y)(4+2x-3y)$"
+},
+{
+"k": "C",
+"v": "$(4-2x+3y)(4+2x+3y)$"
+},
+{
+"k": "D",
+"v": "$(4-2x+3y)(4+2x-3y)$"
+}
+],
+"para": "因式分解 $16-(2x-3y)^2$。",
+"hint": "用平方差 $a^2-b^2=(a-b)(a+b)$，其中 $a=4$、$b=2x-3y$，小心拆括號時的符號。",
+"ans": "D（$(4-2x+3y)(4+2x-3y)$）",
+"steps": [
+{
+"t": "",
+"b": "Recognise the pattern: it is a difference of two squares\n $$a^2-b^2=(a+b)(a-b)$$\n Here $a^2=16$ and $b^2=(2x-3y)^2$, i.e. $a=4$ and $b=2x-3y$."
+},
+{
+"t": "",
+"b": "Write $16$ as $4^2$. Then\n $$16-(2x-3y)^2=4^2-(2x-3y)^2$$"
+},
+{
+"t": "",
+"b": "Apply the identity with $a=4$, $b=2x-3y$:\n $$=[\\,4-(2x-3y)\\,][\\,4+(2x-3y)\\,]$$"
+},
+{
+"t": "",
+"b": "Remove the inner brackets carefully (watch the minus sign):\n $$4-(2x-3y)=4-2x+3y$$\n $$4+(2x-3y)=4+2x-3y$$"
+},
+{
+"t": "",
+"b": "Combine:\n $$\\boxed{16-(2x-3y)^2=(4-2x+3y)(4+2x-3y)}$$\n This matches option D."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2016_P2_Q3.html"
+},
+{
+"topic": "indices",
+"year": "2026",
+"paper": "卷一",
+"qno": "第2題",
+"marks": "3",
+"stem": "Simplify $\\frac{(uv^2)^5}{u^7 v^{-3}}$ and express your answer with positive indices.",
+"opts": [],
+"para": "化簡 $\\dfrac{(uv^2)^5}{u^7v^{-3}}$，並以正指數表示答案。",
+"hint": "先用 $(ab)^n=a^nb^n$、$(a^m)^n=a^{mn}$ 展開，再同底數相除、指數相減。",
+"ans": "$\\dfrac{v^{13}}{u^2}$",
+"steps": [
+{
+"t": "",
+"b": "Apply the power-of-a-product law $(ab)^n=a^n b^n$ and the power-of-a-power law $(a^m)^n=a^{mn}$:\n$$(uv^2)^5=u^5\\,(v^2)^5=u^5v^{10}$$"
+},
+{
+"t": "",
+"b": "Divide using $\\frac{a^m}{a^n}=a^{m-n}$ for each base:\n$$\\frac{u^5v^{10}}{u^7v^{-3}}=u^{5-7}\\,v^{10-(-3)}=u^{-2}v^{13}$$"
+},
+{
+"t": "",
+"b": "Rewrite the negative index as a positive one, since $a^{-n}=\\frac{1}{a^n}$:\n$$u^{-2}v^{13}=\\frac{v^{13}}{u^2}$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2026_P1_Q2.html"
+},
+{
+"topic": "indices",
+"year": "2023",
+"paper": "卷一",
+"qno": "第2題",
+"marks": "3",
+"stem": "Simplify $\\dfrac{x^{-8}y}{\\left(x^{7}y^{9}\\right)^{-6}}$ and express your answer with positive indices.",
+"opts": [],
+"para": "化簡 $\\dfrac{x^{-8}y}{(x^7y^9)^{-6}}$，並以正指數表示答案。",
+"hint": "分母的負指數先取倒數（變成乘 $x^{42}y^{54}$），再逐個底數處理。",
+"ans": "$x^{34}y^{55}$",
+"steps": [
+{
+"t": "Remove the outer power",
+"b": "Apply the power-of-a-product rule  $(ab)^{n}=a^{n}b^{n}$  to the denominator.\n$$(x^{7}y^{9})^{-6}=x^{7\\times(-6)}\\,y^{9\\times(-6)}=x^{-42}y^{-54}$$"
+},
+{
+"t": "Rewrite as a single fraction",
+"b": "Substitute the denominator back:\n$$\\frac{x^{-8}y}{x^{-42}y^{-54}}$$"
+},
+{
+"t": "Subtract the exponents",
+"b": "For the $x$-powers: $\\;-8-(-42)=-8+42=34$\n For the $y$-powers: $\\;1-(-54)=1+54=55$\n$$=x^{\\,34}y^{\\,55}$$"
+},
+{
+"t": "Check the indices are positive",
+"b": "Both exponents $34$ and $55$ are positive, so no further rewriting (e.g. into $\\frac{1}{x^{k}}$) is needed."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2023_P1_Q2.html"
+},
+{
+"topic": "indices",
+"year": "2022",
+"paper": "卷一",
+"qno": "第1題",
+"marks": "3",
+"stem": "Simplify\n $\\dfrac{(a^{3}b^{-2})^{4}}{a^{-5}b^{6}}$\n and express your answer with positive indices.",
+"opts": [],
+"para": "化簡 $\\dfrac{(a^3b^{-2})^4}{a^{-5}b^6}$，並以正指數表示答案。",
+"hint": "分子用冪的冪相乘：$a^{12}b^{-8}$；再把負指數搬到分母。",
+"ans": "$\\dfrac{a^{17}}{b^{14}}$",
+"steps": [
+{
+"t": "Apply the power of a product",
+"b": "Raise each factor inside the bracket to the power $4$:\n $(a^{3}b^{-2})^{4}=a^{3\\times4}\\,b^{-2\\times4}=a^{12}b^{-8}$."
+},
+{
+"t": "Write as a single fraction",
+"b": "The expression becomes\n $\\dfrac{a^{12}b^{-8}}{a^{-5}b^{6}}$.\n Group the $a$'s and the $b$'s separately."
+},
+{
+"t": "Divide powers with the same base",
+"b": "$\\dfrac{a^{12}}{a^{-5}}=a^{12-(-5)}=a^{12+5}=a^{17}$ and\n $\\dfrac{b^{-8}}{b^{6}}=b^{-8-6}=b^{-8-6}$… wait carefully:\n $\\dfrac{b^{-8}}{b^{6}}=b^{-8-6}=b^{-14}$."
+},
+{
+"t": "Make all indices positive",
+"b": "$b^{-14}=\\dfrac{1}{b^{14}}$, so combining the two parts gives\n $\\dfrac{a^{17}}{b^{14}}$."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2022_P1_Q1.html"
+},
+{
+"topic": "indices",
+"year": "2016",
+"paper": "卷一",
+"qno": "第1題",
+"marks": "3",
+"stem": "Simplify $\\dfrac{(x^{8}y^{7})^{2}}{x^{5}y^{-6}}$ and express your answer with positive indices.",
+"opts": [],
+"para": "化簡 $\\dfrac{(x^8y^7)^2}{x^5y^{-6}}$，並以正指數表示答案。",
+"hint": "分子先平方，注意 $y^{-6}$ 移到分子時變 $y^{6}$。",
+"ans": "$x^{11}y^{20}$",
+"steps": [
+{
+"t": "",
+"b": "Expand the numerator — power of a power\n $$(x^{8}y^{7})^{2} = x^{8\\times 2}\\,y^{7\\times 2} = x^{16}y^{14}$$"
+},
+{
+"t": "",
+"b": "Write the fraction with the numerator expanded\n $$\\frac{x^{16}y^{14}}{x^{5}y^{-6}} = x^{16-5}\\,y^{14-(-6)}$$"
+},
+{
+"t": "",
+"b": "Simplify each index carefully\n $$x^{16-5}=x^{11}, \\qquad y^{14-(-6)} = y^{14+6}=y^{20}$$"
+},
+{
+"t": "",
+"b": "State the final answer with positive indices\n $$x^{11}y^{20}$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2016_P1_Q1.html"
+},
+{
+"topic": "indices",
+"year": "2026",
+"paper": "卷二",
+"qno": "第2題",
+"marks": "",
+"stem": "$\\dfrac{9^{3n+1}}{\\left(3^{2n+3}\\right)\\left(27^{2n+1}\\right)}=$",
+"opts": [
+{
+"k": "A",
+"v": "$9^{-n-2}$"
+},
+{
+"k": "B",
+"v": "$9^{-n-1}$"
+},
+{
+"k": "C",
+"v": "$9^{n-2}$"
+},
+{
+"k": "D",
+"v": "$9^{n-1}$"
+}
+],
+"para": "化簡 $\\dfrac{9^{3n+1}}{(3^{2n+3})(27^{2n+1})}$。",
+"hint": "全部化成以 3 為底：$9=3^2$、$27=3^3$，再合併指數。",
+"ans": "A（$9^{-n-2}$）",
+"steps": [
+{
+"t": "Write everything in base 3",
+"b": "Since $9=3^2$ and $27=3^3$,\n$$9^{3n+1}=3^{2(3n+1)}=3^{6n+2},\\qquad\n 27^{2n+1}=3^{3(2n+1)}=3^{6n+3}$$"
+},
+{
+"t": "Combine the denominator",
+"b": "Using $a^x\\cdot a^y=a^{x+y}$,\n$$3^{2n+3}\\cdot 3^{6n+3}=3^{8n+6}$$"
+},
+{
+"t": "Subtract the indices",
+"b": "$$\\frac{3^{6n+2}}{3^{8n+6}}\n =3^{(6n+2)-(8n+6)}\n =3^{-2n-4}\n =\\left(3^2\\right)^{-n-2}\n =9^{-n-2}$$\n This matches option A."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2026_P2_Q2.html"
+},
+{
+"topic": "indices",
+"year": "2021",
+"paper": "卷二",
+"qno": "第1題",
+"marks": "",
+"stem": "Simplify  $\\dfrac{(2^{n})(8^{3n})}{64^{n}}$",
+"opts": [
+{
+"k": "A",
+"v": "$4^{n}$"
+},
+{
+"k": "B",
+"v": "$4^{2n}$"
+},
+{
+"k": "C",
+"v": "$4^{-3n}$"
+},
+{
+"k": "D",
+"v": "$4^{-4n}$"
+}
+],
+"para": "化簡 $\\dfrac{(2^n)(8^{3n})}{64^n}$。",
+"hint": "$8=2^3$、$64=2^6$，統一以 2 為底後加減指數。",
+"ans": "B（$4^{2n}$）",
+"steps": [
+{
+"t": "Rewrite every number with the SAME base",
+"b": "Notice that $8 = 2^{3}$ and $64 = 2^{6}$. Converting everything to base $2$ lets us combine the indices.\n$$2^{n}\\cdot 8^{3n} = 2^{n}\\left(2^{3}\\right)^{3n}, \\qquad 64^{n} = \\left(2^{6}\\right)^{n}$$"
+},
+{
+"t": "",
+"b": "Apply the power law $(a^{m})^{n}=a^{mn}$\n$$\\left(2^{3}\\right)^{3n} = 2^{9n}, \\qquad \\left(2^{6}\\right)^{n} = 2^{6n}$$\n$$\\Rightarrow \\frac{2^{n}\\cdot 2^{9n}}{2^{6n}}$$"
+},
+{
+"t": "Apply the product law on the numerator",
+"b": "$$2^{n}\\cdot 2^{9n} = 2^{\\,n+9n} = 2^{10n}$$\n$$\\Rightarrow \\frac{2^{10n}}{2^{6n}}$$"
+},
+{
+"t": "",
+"b": "Apply the quotient law $a^{m}\\div a^{n}=a^{m-n}$\n$$\\frac{2^{10n}}{2^{6n}} = 2^{\\,10n-6n} = 2^{4n}$$"
+},
+{
+"t": "",
+"b": "Convert to base $4$ to match the options\n Since $4 = 2^{2}$,\n$$2^{4n} = \\left(2^{2}\\right)^{2n} = 4^{2n}$$"
+},
+{
+"t": "Check against the options",
+"b": "$4^{2n}$ matches option B."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2021_P2_Q1.html"
+},
+{
+"topic": "subject",
+"year": "2026",
+"paper": "卷一",
+"qno": "第1題",
+"marks": "3",
+"stem": "Make $m$ the subject of the formula\n$$\\frac{m}{2}-1=\\frac{5m-n}{3} .$$",
+"opts": [],
+"para": "把 $m$ 變為主項：$\\dfrac{m}{2}-1=\\dfrac{5m-n}{3}$。",
+"hint": "全式乘 6 去分母，展開後把所有 $m$ 的項集中在一邊。",
+"ans": "$m=\\dfrac{2n-6}{7}$",
+"steps": [
+{
+"t": "Clear the fractions: multiply both sides by 6 (the LCM of 2 and 3).",
+"b": "$$6\\left(\\frac{m}{2}-1\\right)=6\\cdot\\frac{5m-n}{3} \\implies 3m-6=2(5m-n)$$"
+},
+{
+"t": "Expand the right-hand side.",
+"b": "$$3m-6=10m-2n$$"
+},
+{
+"t": "",
+"b": "Collect the m-terms on one side. Subtract 3m from both sides and add 6:\n$$2n-6=10m-3m \\implies 2n-6=7m$$"
+},
+{
+"t": "Divide by 7 to isolate m.",
+"b": "$$m=\\frac{2n-6}{7}$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2026_P1_Q1.html"
+},
+{
+"topic": "subject",
+"year": "2017",
+"paper": "卷一",
+"qno": "第1題",
+"marks": "",
+"stem": "Make $y$ the subject of the formula\n$$k=\\frac{3x-y}{y}.$$",
+"opts": [],
+"para": "把 $y$ 變為主項：$k=\\dfrac{3x-y}{y}$。",
+"hint": "兩邊乘 $y$，把含 $y$ 的項集中，再抽出 $y$。",
+"ans": "$y=\\dfrac{3x}{k+1}$",
+"steps": [
+{
+"t": "",
+"b": "$$k=\\frac{3x-y}{y}$$"
+},
+{
+"t": "",
+"b": "$$ky=\\left(\\frac{3x-y}{y}\\right)y \\quad\\Longrightarrow\\quad ky=3x-y$$"
+},
+{
+"t": "",
+"b": "$$ky+y=3x$$"
+},
+{
+"t": "",
+"b": "$$y(k+1)=3x$$"
+},
+{
+"t": "",
+"b": "$$y=\\frac{3x}{k+1}$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2017_P1_Q1.html"
+},
+{
+"topic": "subject",
+"year": "2019",
+"paper": "卷一",
+"qno": "第1題",
+"marks": "3",
+"stem": "Make $h$ the subject of the formula\n $$9(h+6k)=7h+8$$",
+"opts": [],
+"para": "把 $h$ 變為主項：$9(h+6k)=7h+8$。",
+"hint": "展開左邊，把 $h$ 的項移到同一邊，常數移到另一邊。",
+"ans": "$h=4-27k$",
+"steps": [
+{
+"t": "Expand the bracket on the LHS.",
+"b": "$$9(h+6k)=7h+8$$\n$$9h + 54k = 7h + 8$$"
+},
+{
+"t": "",
+"b": "Collect the $h$ terms on one side.\n Subtract $7h$ from both sides:\n$$9h - 7h = 8 - 54k$$"
+},
+{
+"t": "",
+"b": "Simplify and divide by the coefficient of $h$.\n$$2h = 8 - 54k$$\n$$h = \\frac{8-54k}{2} = 4 - 27k$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2019_P1_Q1.html"
+},
+{
+"topic": "subject",
+"year": "2018",
+"paper": "卷一",
+"qno": "第1題",
+"marks": "3",
+"stem": "Make $b$ the subject of the formula\n $$\\frac{a+4}{3}=\\frac{b+1}{2}.$$",
+"opts": [],
+"para": "把 $b$ 變為主項：$\\dfrac{a+4}{3}=\\dfrac{b+1}{2}$。",
+"hint": "交叉相乘去分母，再解出 $b$。",
+"ans": "$b=\\dfrac{2a+5}{3}$",
+"steps": [
+{
+"t": "Clear the denominators — cross-multiply",
+"b": "Multiply both sides by $3\\times 2=6$ (cross-multiplication):\n $$2(a+4)=3(b+1)$$"
+},
+{
+"t": "Expand the brackets",
+"b": "$$2a+8=3b+3$$"
+},
+{
+"t": "",
+"b": "Collect the $b$-terms on one side\n Subtract $3$ from both sides, then rearrange:\n $$3b = 2a+5$$"
+},
+{
+"t": "",
+"b": "Divide by the coefficient of $b$\n Divide both sides by $3$:\n $$b=\\frac{2a+5}{3}$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2018_P1_Q1.html"
+},
+{
+"topic": "subject",
+"year": "2015",
+"paper": "卷一",
+"qno": "第2題",
+"marks": "",
+"stem": "Make b the subject of the formula\n$$\\frac{4a+5b-7}{b} = 8. $$",
+"opts": [],
+"para": "把 $b$ 變為主項：$\\dfrac{4a+5b-7}{b}=8$。",
+"hint": "兩邊乘 $b$，展開後把所有 $b$ 的項移到同一邊。",
+"ans": "$b=\\dfrac{4a-7}{3}$",
+"steps": [
+{
+"t": "1",
+"b": "Clear the denominator\n Multiply both sides by $b$ (note $b \\neq 0$):\n$$\\frac{4a+5b-7}{b}\\times b = 8 \\times b$$\n$$4a + 5b - 7 = 8b$$"
+},
+{
+"t": "2",
+"b": "Collect the $b$-terms on one side\n Subtract $5b$ from both sides:\n$$4a - 7 = 8b - 5b$$\n$$4a - 7 = 3b$$"
+},
+{
+"t": "3",
+"b": "Divide by the coefficient of $b$\n Divide both sides by $3$:\n$$b = \\frac{4a - 7}{3}$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2015_P1_Q2.html"
+},
+{
+"topic": "subject",
+"year": "2018",
+"paper": "卷二",
+"qno": "第2題",
+"marks": "",
+"stem": "If $\\dfrac{\\alpha}{1-x}=\\dfrac{\\beta}{x}$, then $x=$",
+"opts": [
+{
+"k": "A",
+"v": "$\\dfrac{\\alpha}{\\alpha-\\beta}$"
+},
+{
+"k": "B",
+"v": "$\\dfrac{\\alpha}{\\alpha+\\beta}$"
+},
+{
+"k": "C",
+"v": "$\\dfrac{\\beta}{\\alpha-\\beta}$"
+},
+{
+"k": "D",
+"v": "$\\dfrac{\\beta}{\\alpha+\\beta}$"
+}
+],
+"para": "若 $\\dfrac{\\alpha}{1-x}=\\dfrac{\\beta}{x}$，求 $x$。",
+"hint": "交叉相乘後把含 $x$ 的項集中，再抽出 $x$。",
+"ans": "D（$x=\\dfrac{\\beta}{\\alpha+\\beta}$）",
+"steps": [
+{
+"t": "Start from the given equation.",
+"b": "$$\\frac{\\alpha}{1-x}=\\frac{\\beta}{x}$$"
+},
+{
+"t": "Cross-multiply.",
+"b": "Multiply both sides by $x(1-x)$:\n$$\\alpha x=\\beta(1-x)$$"
+},
+{
+"t": "Expand the bracket.",
+"b": "$$\\alpha x=\\beta-\\beta x$$"
+},
+{
+"t": "Collect all x-terms on one side.",
+"b": "Add $\\beta x$ to both sides:\n$$\\alpha x+\\beta x=\\beta$$"
+},
+{
+"t": "Factorise x out of the left side.",
+"b": "$$(\\alpha+\\beta)x=\\beta$$"
+},
+{
+"t": "",
+"b": "Divide both sides by $(\\alpha+\\beta)$.\n$$x=\\frac{\\beta}{\\alpha+\\beta}$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2018_P2_Q2.html"
+},
+{
+"topic": "percent",
+"year": "2026",
+"paper": "卷一",
+"qno": "第7題",
+"marks": "4",
+"stem": "A profit of $\\$162$ is made by selling a ring at a discount of $15\\%$ on its marked price. The marked price of the ring is $\\$270$ above its cost. Find the percentage profit.",
+"opts": [],
+"para": "某戒指以標價的 85 折（15% 折扣）售出，獲利 162 元。已知標價比成本高 270 元，求利潤率。",
+"hint": "設成本為 $c$，則標價 $=c+270$、售價 $=0.85(c+270)=c+162$，先解出 $c$。",
+"ans": "利潤率 $=36\\%$",
+"steps": [
+{
+"t": "Define variables",
+"b": "Let M = marked price and C = cost price.\n$$M=C+270$$"
+},
+{
+"t": "Express the selling price",
+"b": "A 15% discount means the ring sells at 85% of the marked price:\n$$SP=0.85M$$"
+},
+{
+"t": "Use the profit information",
+"b": "$$SP-C=162 \\implies 0.85M-C=162$$\nSubstitute $M=C+270$:\n$$0.85(C+270)-C=162$$\n$$0.85C+229.5-C=162 \\implies -0.15C=-67.5 \\implies C=450$$\nHence $M=450+270=720$, and $SP=0.85\\times720=612$."
+},
+{
+"t": "Percentage profit",
+"b": "$$\\text{Percentage profit}=\\frac{162}{450}\\times100\\%=36\\%$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2026_P1_Q7.html"
+},
+{
+"topic": "percent",
+"year": "2024",
+"paper": "卷一",
+"qno": "第6題",
+"marks": "4",
+"stem": "The marked price of a calculator is 40% higher than its cost. The calculator is sold at a\n discount of 25% on its marked price and the profit is \\$13. Find the marked price of\n the calculator.",
+"opts": [],
+"para": "某計算器的標價比成本高 40%，現以標價的 75 折售出，獲利 13 元。求標價。",
+"hint": "設成本 $c$，售價 $=0.75\\times1.4c=1.05c$，所以利潤 $=0.05c=13$。",
+"ans": "標價 $=364$ 元",
+"steps": [
+{
+"t": "Set up",
+"b": "Let the cost of the calculator be $\\$c$.\n The marked price is $40\\%$ higher than the cost:\n $\\text{Marked price}=(1+40\\%)\\,c=\\$1.4c$"
+},
+{
+"t": "Selling price",
+"b": "A 25% discount is taken on the marked price, so the customer pays 75% of it:\n $\\text{Selling price}=(75\\%)(1.4c)=\\$1.05c$"
+},
+{
+"t": "Profit equation",
+"b": "Profit = selling price − cost:\n $1.05c-c=13$\n $0.05c=13 \\quad\\Rightarrow\\quad c=260$"
+},
+{
+"t": "Marked price",
+"b": "Marked price $=1.4c=1.4\\times 260=\\$364$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2024_P1_Q6.html"
+},
+{
+"topic": "percent",
+"year": "2023",
+"paper": "卷一",
+"qno": "第5題",
+"marks": "4",
+"stem": "On a ferry, the number of female passengers is 40% more than the number of male passengers. If 24 female passengers leave the ferry, then the number of male passengers is 40% more than the number of female passengers.\n Find the number of male passengers on the ferry.",
+"opts": [],
+"para": "渡輪上女乘客比男乘客多 40%。若有 24 名女乘客離開，則男乘客比女乘客多 40%。求男乘客的人數。",
+"hint": "設男乘客 $m$ 人，女乘客 $1.4m$ 人；離開後 $1.4m-24=\\dfrac{m}{1.4}$。",
+"ans": "男乘客 $35$ 人",
+"steps": [
+{
+"t": "",
+"b": "Introduce the unknowns\n Let $x$ be the number of male passengers\nand $y$ be the original number of female passengers on the ferry.\n Use two variables — one for each gender — so each condition becomes a simple equation."
+},
+{
+"t": "",
+"b": "Translate the first condition\n “Female passengers are 40% more than male passengers”:\n$$y = (1+40\\%)\\,x = 1.4x \\qquad \\text{……(1)}$$\n “40% more than” means $\\times 1.4$, i.e. the original amount plus 40% of it."
+},
+{
+"t": "",
+"b": "Translate the second condition\n After 24 female passengers leave, females become $y-24$, and males are 40% more:\n$$x = (1+40\\%)(y-24) = 1.4(y-24) \\qquad \\text{……(2)}$$\n Only the female count changes — the male count $x$ stays the same throughout."
+},
+{
+"t": "",
+"b": "Solve the simultaneous equations\n Substitute (1) into (2):\n$$x = 1.4\\bigl(1.4x-24\\bigr)$$\n$$x = 1.96x - 33.6$$\n$$0.96x = 33.6 \\quad\\Rightarrow\\quad x = 35$$\n Then $y = 1.4(35) = 49$.\n Expand, collect $x$ on one side, then divide by the coefficient of $x$."
+},
+{
+"t": "",
+"b": "Check and state the answer\n Check: $49 = 1.4 \\times 35$ ✓ and $35 = 1.4 \\times (49-24) = 1.4 \\times 25 = 35$ ✓\n Always substitute back to confirm both conditions hold."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2023_P1_Q5.html"
+},
+{
+"topic": "percent",
+"year": "2019",
+"paper": "卷一",
+"qno": "第5題",
+"marks": "4",
+"stem": "A wallet is sold at a discount of $25\\%$ on its marked price. The selling price of the wallet is $\\$690$.\n (a) Find the marked price of the wallet.\n (b) After selling the wallet, the percentage profit is $15\\%$. Find the cost of the wallet.",
+"opts": [],
+"para": "某銀包以標價的 75 折售出，售價為 690 元。(a) 求標價。(b) 若售出後利潤率為 15%，求成本。",
+"hint": "(a) $690=0.75\\times\\text{標價}$；(b) $690=1.15\\times\\text{成本}$。",
+"ans": "(a) 920 元；(b) 600 元",
+"steps": [
+{
+"t": "(a) Set up the equation",
+"b": "Let $\\$m$ be the marked price of the wallet.\n The selling price equals the marked price reduced by $25\\%$:\n $$(1-25\\%)\\,m = 690$$"
+},
+{
+"t": "",
+"b": "Solve for $m$\n $$0.75\\,m = 690$$\n $$m=\\frac{690}{0.75}$$\n $$m = 920$$"
+},
+{
+"t": "Conclusion for (a)",
+"b": "Thus, the marked price of the wallet is $\\$920$."
+},
+{
+"t": "(b) Set up the profit equation",
+"b": "Let $\\$c$ be the cost of the wallet.\n A $15\\%$ profit means the selling price is $115\\%$ of the cost:\n $$(1+15\\%)\\,c = 690$$"
+},
+{
+"t": "",
+"b": "Solve for $c$\n $$1.15\\,c = 690$$\n $$c=\\frac{690}{1.15}=600$$"
+},
+{
+"t": "Conclusion for (b)",
+"b": "Thus, the cost of the wallet is $\\$600$."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2019_P1_Q5.html"
+},
+{
+"topic": "percent",
+"year": "2015",
+"paper": "卷一",
+"qno": "第6題",
+"marks": "4",
+"stem": "The cost of a book is $\\$250$. The book is now sold and the percentage profit is $20\\%$.\n (a) Find the selling price of the book.\n (b) If the book is sold at a discount of $25\\%$ on its marked price, find the marked price of the book.",
+"opts": [],
+"para": "某書成本 250 元，售出後利潤率為 20%。(a) 求售價。(b) 若以標價的 75 折售出，求標價。",
+"hint": "售價 $=$ 成本 $\\times(1+$ 利潤率 $)$；售價 $=0.75\\times$ 標價。",
+"ans": "(a) 300 元；(b) 400 元",
+"steps": [
+{
+"t": "(a) Step 1 — Identify the given information",
+"b": "Cost price $C = \\$250$, percentage profit $= 20\\%$.\n Profit is calculated on the cost price, not on the selling price."
+},
+{
+"t": "(a) Step 2 — Compute the selling price",
+"b": "Selling price $= C\\,(1 + 20\\%)$\n $= 250 \\times 1.2 = \\boxed{\\$300}$"
+},
+{
+"t": "(b) Step 3 — Set up the discount equation",
+"b": "Let $x$ be the marked price of the book.\n The selling price equals the marked price reduced by $25\\%$:\n $(1 - 25\\%)\\,x = 300 \\;\\Rightarrow\\; 0.75x = 300$"
+},
+{
+"t": "(b) Step 4 — Solve for the marked price",
+"b": "$$x = \\frac{300}{75\\%} = \\frac{300}{0.75} = 400$$\n Therefore the marked price of the book is $\\$400$."
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2015_P1_Q6.html"
+},
+{
+"topic": "percent",
+"year": "2024",
+"paper": "卷二",
+"qno": "第11題",
+"marks": "",
+"stem": "In a school, $40\\%$ of the students are girls and $\\beta\\%$ of the girls are\n foreign students. It is given that $30\\%$ of the boys in the school are foreign\n students. In the school, the number of foreign students and the number of girls\n are equal. Find $\\beta$.",
+"opts": [
+{
+"k": "A",
+"v": "20"
+},
+{
+"k": "B",
+"v": "45"
+},
+{
+"k": "C",
+"v": "55"
+},
+{
+"k": "D",
+"v": "80"
+}
+],
+"para": "全校有 40% 是女生，其中 $\\beta\\%$ 的女生是外來生；男生中有 30% 是外來生。已知外來生人數與女生人數相等，求 $\\beta$。",
+"hint": "設全校 $x$ 人：女生 $0.4x$，外來女生 $0.4x\\cdot\\frac{\\beta}{100}$，外來男生 $0.6x\\times0.3$，兩者相加 $=0.4x$。",
+"ans": "C（$\\beta=55$）",
+"steps": [
+{
+"t": "Let $x$ be the total number of students",
+"b": "Introduce a single unknown for the whole school so every group can be\n written as a percentage of $x$."
+},
+{
+"t": "Write down each group",
+"b": "Girls $= 40\\%$ of $x = 0.4x$, so Boys $= (1-40\\%)\\,x = 0.6x$.\n Foreign girls $= 40\\% \\times \\beta\\%$ of $x = 0.4x \\cdot \\dfrac{\\beta}{100}$.\n Foreign boys $= (1-40\\%) \\times 30\\%$ of $x = 0.6x \\times 0.3 = 0.18x$."
+},
+{
+"t": "Total number of foreign students",
+"b": "$$\\text{Foreign} = 0.4x \\cdot \\frac{\\beta}{100} + 0.6x \\times 0.3$$\n $$= 0.004\\beta x + 0.18x$$"
+},
+{
+"t": "Set up the equation (foreign = girls)",
+"b": "The question says the number of foreign students equals the number of girls, and girls $= 0.4x$:\n $$0.004\\beta x + 0.18x = 0.4x$$"
+},
+{
+"t": "Solve for $\\beta$",
+"b": "Divide both sides by $x$ (as $x>0$):\n $$0.004\\beta + 0.18 = 0.4$$\n $$0.004\\beta = 0.22$$\n $$\\beta = \\frac{0.22}{0.004} = 55$$"
+}
+],
+"src": "https://tyhcch1234.github.io/HKDSE-Maths-Solutions/2024_P2_Q11.html"
+}
+]
+}</script>
+<script>
+(function () {
+  function init() {
+  const DATA = JSON.parse(document.getElementById("data").textContent);
+  const KEY = "f4ut1-mastered-v1";
+  let mastered = {};
+  try { mastered = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { mastered = {}; }
+
+  const esc = (s) => String(s == null ? "" : s);
+  const tabsEl = document.querySelector(".tabs");
+  const mainEl = document.getElementById("panels");
+
+  DATA.topics.forEach((t) => {
+    const btn = document.createElement("button");
+    btn.className = "tab";
+    btn.setAttribute("role", "tab");
+    btn.setAttribute("aria-selected", "false");
+    btn.style.setProperty("--c", t.color);
+    btn.dataset.topic = t.id;
+    btn.innerHTML = '<span class="dot"></span><span>' + esc(t.zh) + '</span><span class="n">' +
+      DATA.items.filter((i) => i.topic === t.id).length + '</span>';
+    btn.addEventListener("click", () => select(t.id));
+    tabsEl.appendChild(btn);
+
+    const panel = document.createElement("section");
+    panel.className = "panel";
+    panel.id = "panel-" + t.id;
+    panel.setAttribute("aria-label", t.zh);
+    panel.style.setProperty("--c", t.color);
+    panel.hidden = true;
+    panel.innerHTML =
+      '<div class="panel-head">' +
+        '<div>' +
+          '<div class="panel-title"><span class="pill"></span><div>' +
+            '<h2>' + esc(t.zh) + '<span class="en">' + esc(t.en) + '</span></h2>' +
+          '</div></div>' +
+          '<p class="panel-desc">' + esc(t.desc) + '</p>' +
+        '</div>' +
+        '<div class="tools">' +
+          '<button class="tool" data-act="hints">顯示全部提示</button>' +
+          '<button class="tool" data-act="sols">顯示全部解答</button>' +
+          '<button class="tool" data-act="collapse">全部收起</button>' +
+          '<button class="tool" data-act="reset">重設本科進度</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="topic-progress"><span class="done-n">0 / ' + DATA.items.filter((i) => i.topic === t.id).length + '</span>' +
+        '<span class="bar"><i></i></span></div>' +
+      '<div class="cards"></div>';
+    mainEl.appendChild(panel);
+
+    const cards = panel.querySelector(".cards");
+    const items = DATA.items.filter((i) => i.topic === t.id);
+    items.forEach((it, idx) => cards.appendChild(card(it, idx, t)));
+  });
+
+  function card(it, idx, t) {
+    const id = it.year + "_" + it.paper + "_" + it.qno;
+    const el = document.createElement("article");
+    el.className = "card";
+    el.dataset.id = id;
+    if (mastered[id]) el.classList.add("is-done");
+
+    const badgeKind = it.opts.length ? "選擇題" : (it.marks ? it.marks + " 分" : "長題目");
+    let html = '<div class="card-head">' +
+      '<span class="idx">' + (idx + 1) + '</span>' +
+      '<div class="badges">' +
+        '<span class="badge src">DSE ' + esc(it.year) + '</span>' +
+        '<span class="badge">' + esc(it.paper) + ' · ' + esc(it.qno) + '</span>' +
+        '<span class="badge tag">' + badgeKind + '</span>' +
+      '</div><span class="spacer"></span></div>' +
+      '<p class="para"><span class="lbl">題意</span>' + esc(it.para) + '</p>' +
+      '<details class="orig"><summary>英文原題</summary><div class="orig-body">' + esc(it.stem) + '</div></details>';
+
+    if (it.opts.length) {
+      html += '<div class="options">' + it.opts.map((o) =>
+        '<div class="opt"><b>' + esc(o.k) + '.</b><span>' + esc(o.v) + '</span></div>').join("") + '</div>';
+    }
+
+    html += '<div class="actions">' +
+      '<button class="btn hint" data-t="hint" aria-expanded="false">提示</button>' +
+      '<button class="btn sol" data-t="sol" aria-expanded="false">查看解答</button>' +
+      '<button class="btn done" data-t="done" aria-pressed="' + (mastered[id] ? "true" : "false") + '">' +
+        (mastered[id] ? "✓ 已掌握" : "標記已掌握") + '</button>' +
+      '</div>' +
+      '<div class="box hintbox" hidden><span class="h">提示</span>' + esc(it.hint) + '</div>';
+
+    let sol = '<div class="box solbox" hidden><div class="answer"><span class="lb">答案</span><span>' + esc(it.ans) + '</span></div>';
+    if (it.steps && it.steps.length) {
+      sol += '<ol class="steps">' + it.steps.map((s, i) =>
+        '<li><span class="sn">' + (i + 1) + '</span><div class="sc">' +
+        (s.t ? '<div class="st">' + esc(s.t) + '</div>' : '') +
+        '<div class="sb">' + esc(s.b) + '</div></div></li>').join("") + '</ol>';
+    }
+    sol += '<a class="srclink" href="' + it.src + '" target="_blank" rel="noopener">開啟原始題解頁 →</a></div>';
+    html += sol;
+    el.innerHTML = html;
+
+    el.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-t]");
+      if (!b) return;
+      const t = b.dataset.t;
+      if (t === "hint" || t === "sol") {
+        const box = el.querySelector(t === "hint" ? ".hintbox" : ".solbox");
+        const open = box.hidden;
+        box.hidden = !open;
+        b.setAttribute("aria-expanded", String(open));
+        if (t === "hint") b.textContent = open ? "收起提示" : "提示";
+        else b.textContent = open ? "收起解答" : "查看解答";
+      } else if (t === "done") {
+        const on = b.getAttribute("aria-pressed") !== "true";
+        b.setAttribute("aria-pressed", String(on));
+        b.textContent = on ? "✓ 已掌握" : "標記已掌握";
+        el.classList.toggle("is-done", on);
+        if (on) mastered[el.dataset.id] = 1; else delete mastered[el.dataset.id];
+        try { localStorage.setItem(KEY, JSON.stringify(mastered)); } catch (err) {}
+        refresh();
+      }
+    });
+    return el;
+  }
+
+  document.querySelectorAll(".panel").forEach((p) => {
+    p.querySelector(".tools").addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-act]");
+      if (!b) return;
+      const act = b.dataset.act;
+      if (act === "reset") {
+        p.querySelectorAll(".card").forEach((c) => {
+          delete mastered[c.dataset.id];
+          c.classList.remove("is-done");
+          const d = c.querySelector('[data-t="done"]');
+          if (d) { d.setAttribute("aria-pressed", "false"); d.textContent = "標記已掌握"; }
+        });
+        try { localStorage.setItem(KEY, JSON.stringify(mastered)); } catch (err) {}
+        refresh();
+        return;
+      }
+      p.querySelectorAll(".card").forEach((c) => {
+        if (act === "collapse") {
+          [".hintbox", ".solbox"].forEach((sel) => {
+            const box = c.querySelector(sel); if (box) box.hidden = true;
+          });
+          const h = c.querySelector('[data-t="hint"]'), s = c.querySelector('[data-t="sol"]');
+          if (h) { h.setAttribute("aria-expanded", "false"); h.textContent = "提示"; }
+          if (s) { s.setAttribute("aria-expanded", "false"); s.textContent = "查看解答"; }
+          return;
+        }
+        const sel = act === "hints" ? ".hintbox" : ".solbox";
+        const box = c.querySelector(sel);
+        if (box) box.hidden = false;
+        const btn = c.querySelector(act === "hints" ? '[data-t="hint"]' : '[data-t="sol"]');
+        if (btn) {
+          btn.setAttribute("aria-expanded", "true");
+          btn.textContent = act === "hints" ? "收起提示" : "收起解答";
+        }
+      });
+    });
+  });
+
+  function refresh() {
+    document.querySelectorAll(".panel").forEach((p) => {
+      const cards = Array.from(p.querySelectorAll(".card"));
+      const done = cards.filter((c) => mastered[c.dataset.id]).length;
+      p.querySelector(".done-n").textContent = done + " / " + cards.length;
+      p.querySelector(".bar i").style.width = (cards.length ? (done / cards.length) * 100 : 0) + "%";
+    });
+    const total = DATA.items.length;
+    const done = DATA.items.filter((i) => mastered[i.year + "_" + i.paper + "_" + i.qno]).length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    document.getElementById("ov-num").textContent = done + " / " + total;
+    document.getElementById("ov-pct").textContent = pct + "%";
+    document.getElementById("ov-bar").style.width = pct + "%";
+  }
+
+  let ttries = 0;
+  function typeset(el) {
+    if (!window.renderMathInElement) {
+      if (ttries++ < 25) setTimeout(() => typeset(el), 200);
+      return;
+    }
+    {
+      try {
+        window.renderMathInElement(el, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "\\[", right: "\\]", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false }
+          ],
+          throwOnError: false,
+          ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code", "option"]
+        });
+      } catch (e) { /* keep raw TeX */ }
+    }
+  }
+
+  function select(id) {
+    document.querySelectorAll(".tab").forEach((b) =>
+      b.setAttribute("aria-selected", String(b.dataset.topic === id)));
+    document.querySelectorAll(".panel").forEach((p) => { p.hidden = p.id !== "panel-" + id; });
+    const panel = document.getElementById("panel-" + id);
+    if (panel && !panel.dataset.typeset) { typeset(panel); panel.dataset.typeset = "1"; }
+    try { history.replaceState(null, "", "#" + id); } catch (e) {}
+  }
+
+  const hash = (location.hash || "").replace("#", "");
+  select(DATA.topics.some((t) => t.id === hash) ? hash : DATA.topics[0].id);
+  typeset(document.querySelector(".hero"));
+  refresh();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+
+</script>
+</body>
+</html>
